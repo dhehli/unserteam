@@ -1,11 +1,12 @@
 const express = require('express')
 const app = express()
 const config = require('config');
+const path = require("path");
 
 app.use('/', express.static(__dirname + '/public'))
 
 app.get('/', function (req, res) {
-  res.render(__dirname + '/views/index.pug')
+  res.sendFile('index.html');
 })
 
 app.listen(config.port, function () {
