@@ -5,6 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "node index.js",
+    "build": "webpack",
+    "build:watch": "webpack --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -14,5 +16,8 @@
     "express": "^4.15.4",
     "pug": "^2.0.0-rc.3",
     "superagent": "^3.6.0"
+  },
+  "devDependencies": {
+    "webpack": "^3.5.5"
   }
 }
