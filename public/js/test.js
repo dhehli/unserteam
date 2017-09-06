@@ -68,5 +68,5 @@ $(function(){
           $alert.html("User created, go back to the <a href='sign-in.html'>login Form</a>");
         }
       })
-  }
+  })
 })
