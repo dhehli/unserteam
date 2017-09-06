@@ -5,16 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Unser Team</title>
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  <link rel="stylesheet" href="/css/main.css">
   <script src="http://code.jquery.com/jquery-1.11.1.min.js" defer></script>
   <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js" defer></script>
+  <script src="/js/test.js" defer></script>
 </head>
 <body>
   <!-- Start of first page -->
   <div data-role="page" id="foo">
 
-  	<div data-role="header">
+    <div data-role="panel" id="navigation">
+
+    </div>
+
+    <div data-role="header">
   		<h1>Foo</h1>
   	</div><!-- /header -->
+
+    <div class="ui-content">
+      <a href="#navigation" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-icon-left ui-icon-bars">Navigation</a>
+    </div>
 
   	<div role="main" class="ui-content">
   		<p>I'm first in the source order so I'm shown as the page.</p>

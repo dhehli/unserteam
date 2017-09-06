@@ -13,11 +13,6 @@
   "license": "ISC",
   "dependencies": {
     "config": "^1.26.2",
-    "express": "^4.15.4",
-    "pug": "^2.0.0-rc.3",
-    "superagent": "^3.6.0"
-  },
-  "devDependencies": {
-    "webpack": "^3.5.5"
+    "express": "^4.15.4"
   }
 }
