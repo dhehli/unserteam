@@ -1,12 +1,13 @@
+//Hook to check if user is has session
+$(document).on("pagecontainershow", function () {
+  const pageId = $('body').pagecontainer('getActivePage').prop('id');
+  if(pageId === "member" && !$.session.get('Authorization')){
+    $.mobile.pageContainer.pagecontainer("change", "#welcome");
+  }
+})
+
 $(function(){
   const baseURI = "https://zbw.lump.ch";
-
-  //Handle Logout
-  $("#logout").click(function(e){
-    e.preventDefault();
-    $.session.remove('Authorization');
-    $.mobile.changePage("index.html");
-  })
 
   //FirstAuthentication with session
   function basicAuth(user, password) {
@@ -88,11 +89,20 @@ $(function(){
         $alert.addClass("alert-danger");
         $alert.text(msg.message);
       }else{
-        $alert.addClass("alert-success");
-        $alert.html("Login ok");
+        $alert.text("");
         $.session.set('Authorization', basicAuth(email, password));
-        $.mobile.changePage( "member.html");
+        $.mobile.pageContainer.pagecontainer("change", "#member");
       }
     });
   })
+
+  //Handle Logout
+  $("#logout").click(function(e){
+    console.log("logout");
+    $.session.remove('Authorization');
+    $.mobile.pageContainer.pagecontainer("change", "#welcome");
+  })
+
+  //
+
 })
