@@ -9,7 +9,7 @@ $(function(){
   }
 
   //Basic AjaxHandler
-  function ajaxHandler(method, url, data = {}, auth = 'no', cb){
+  function ajaxHandler(method, url, data, auth, cb){
     $.ajax({
       method: method,
       url: baseURI + url,
@@ -51,7 +51,7 @@ $(function(){
       Password: password
     }
 
-    ajaxHandler('post', '/api/v1/register', data , function(msg){
+    ajaxHandler('post', '/api/v1/register', data, 'no' , function(msg){
       if(msg.type == "Warning" || msg.type == "Error"){
         $alert.addClass("alert-danger");
         $alert.text(msg.message);

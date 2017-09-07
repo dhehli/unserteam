@@ -15,9 +15,42 @@
     <div role="main" class="ui-content">
         <h2 class="mc-text-center">Welcome!</h2>
         <h3>Existing Users</h3>
-        <a href="sign-in.html" class="ui-btn ui-corner-all">Sign In</a>
+        <a href="#signin-page" class="ui-btn ui-corner-all">Sign In</a>
         <h3>Don't have an account?</h3>
-        <a href="sign-up.html" class="ui-btn ui-corner-all">Sign Up</a>
+        <a href="#signup-page" class="ui-btn ui-corner-all">Sign Up</a>
+    </div>
+  </div>
+
+  <div data-role="page" id="signin-page">
+    <div role="main" class="ui-content">
+        <h2 class="mc-text-center">Sign In</h2>
+        <form data-ajax="false" id="signin-form">
+          <div class="alert"></div>
+          <label for="email">E-Mail:</label>
+          <input type="email" name="email" id="email" value="" required>
+          <label for="email">Password:</label>
+          <input type="password" name="password" id="password" value="" required>
+          <input type="submit" value="Login">
+        </form>
+    </div>
+  </div>
+
+  <div data-role="page" id="signup-page">
+    <div role="main" class="ui-content">
+        <h2 class="mc-text-center">Sign Up</h2>
+        <form data-ajax="false" id="signup-form">
+          <div class="alert"></div>
+          <input type="hidden" name="active" id="active" value="1" required>
+          <label for="firstname">Firstname:</label>
+          <input type="text" name="firstname" id="firstname" value="" required>
+          <label for="lastname">Lastname:</label>
+          <input type="text" name="firstname" id="lastname" value="" required>
+          <label for="email">E-Mail:</label>
+          <input type="email" name="email" id="email" value="" required>
+          <label for="email">Password:</label>
+          <input type="password" name="password" id="password" value="" required>
+          <input type="submit" value="Submit">
+        </form>
     </div>
   </div>
 </body>
