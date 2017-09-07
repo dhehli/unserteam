@@ -1,14 +1,25 @@
 $(function(){
   const baseURI = "https://zbw.lump.ch";
 
+  //FirstAuthentication with session
+  function basicAuth(user, password) {
+    const tok = user + ':' + password;
+    const hash = btoa(tok);
+    return "Basic " + hash;
+  }
+
   //Basic AjaxHandler
-  function ajaxHandler(method, url, data, cb){
+  function ajaxHandler(method, url, data = {}, auth = 'no', cb){
     $.ajax({
       method: method,
       url: baseURI + url,
       data: JSON.stringify(data),
-      beforeSend: function() {
+      beforeSend: function(xhr) {
          $.mobile.loading('show');
+         if(auth == "yes"){
+           const { email, password } = data;
+           xhr.setRequestHeader('Authorization', basicAuth(email, password));
+         }
       },
       complete: function() {
         $.mobile.loading('hide');
@@ -20,36 +31,12 @@ $(function(){
     })
   }
 
-  //FirstAuthentication with session
-  function ajaxFirstAuth(){
-    function basicAuth(user, password) {
-      var tok = user + ':' + password;
-      var hash = btoa(tok);
-      return "Basic " + hash;
-    }
-
-    $.ajax
-      ({
-        type: "GET",
-        url: baseURI + "/api/v1/users",
-        beforeSend: function (xhr){
-            xhr.setRequestHeader('Authorization', basicAuth(eMail, password));
-            $.session.set('authString', basicAuth(eMail, password));
-            console.log($.session.get('authString'))
-        },
-        success: function (msg){
-            console.log(msg);
-        }
-    });
-  }
-
-
   //Submit SignupForm
   $("#signup-form").submit(function(e){
     e.preventDefault();
 
     const $alert = $(this).find(".alert");
- 
+
     const active = $("#active").val();
     const firstName = $("#firstname").val();
     const lastName = $("#lastname").val();
@@ -64,7 +51,7 @@ $(function(){
       Password: password
     }
 
-    ajaxHandler('post', '/api/v1/register', data, function(msg){
+    ajaxHandler('post', '/api/v1/register', data , function(msg){
       if(msg.type == "Warning" || msg.type == "Error"){
         $alert.addClass("alert-danger");
         $alert.text(msg.message);
@@ -77,18 +64,28 @@ $(function(){
 
   //Login Form
   $("#signin-form").submit(function(e){
-      e.preventDefault();
+    e.preventDefault();
 
-      const $alert = $(this).find(".alert");
+    const $alert = $(this).find(".alert");
 
-      const eMail = $("#email").val();
-      const password = $("#password").val();
+    const email = $("#email").val();
+    const password = $("#password").val();
 
-      const data = {
-        Email: eMail,
-        Password: password
+    const data = {
+      email: email,
+      password: password
+    }
+
+    ajaxHandler('get', '/api/v1/users', data, 'yes', function(msg){
+      if(msg.type == "Warning" || msg.type == "Error"){
+        $alert.addClass("alert-danger");
+        $alert.text(msg.message);
+      }else{
+        $alert.addClass("alert-success");
+        $alert.html("Login ok");
+        $.session.set('Authorization', basicAuth(email, password));
+        $.mobile.changePage( "member.html");
       }
-
-
+    });
   })
 })
