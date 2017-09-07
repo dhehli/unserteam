@@ -1,5 +1,5 @@
 $(function(){
   if(!$.session.get('Authorization')){
-    $.mobile.changePage("sign-in.html");
+    $.mobile.changePage("index.html");
   }
 })

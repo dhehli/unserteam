@@ -15,18 +15,19 @@
 <body>
   <!-- Start of first page -->
   <div data-role="page" id="foo">
-
     <div data-role="panel" id="navigation">
+      <ul class="main-nav">
+        <li><a href="#" id="logout">Logout</a></li>
+      </ul>
 
     </div>
 
     <div data-role="header">
-  		<h1>Foo</h1>
-  	</div><!-- /header -->
-
-    <div class="ui-content">
-      <a href="#navigation" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-btn-icon-left ui-icon-bars">Navigation</a>
+        <a href="#navigation" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-grid">Navigation</a>
+        <h1>My App</h1>
+        
     </div>
+
 
   	<div role="main" class="ui-content">
   		<p>I'm first in the source order so I'm shown as the page.</p>

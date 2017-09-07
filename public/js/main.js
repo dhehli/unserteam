@@ -1,6 +1,13 @@
 $(function(){
   const baseURI = "https://zbw.lump.ch";
 
+  //Handle Logout
+  $("#logout").click(function(e){
+    e.preventDefault();
+    $.session.remove('Authorization');
+    $.mobile.changePage("index.html");
+  })
+
   //FirstAuthentication with session
   function basicAuth(user, password) {
     const tok = user + ':' + password;
