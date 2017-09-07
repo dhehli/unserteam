@@ -19,7 +19,7 @@ $(function(){
     e.preventDefault();
 
     const $alert = $(this).find(".alert");
-
+ 
     const active = $("#active").val();
     const firstName = $("#firstname").val();
     const lastName = $("#lastname").val();
@@ -46,7 +46,7 @@ $(function(){
   })
 
   //Login Form
-  $("#signup-form").submit(function(e){
+  $("#signin-form").submit(function(e){
       e.preventDefault();
 
       const $alert = $(this).find(".alert");
