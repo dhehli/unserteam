@@ -29,10 +29,10 @@
         <h2 class="mc-text-center">Sign In</h2>
         <form data-ajax="false" id="signin-form">
           <div class="alert"></div>
-          <label for="email">E-Mail:</label>
-          <input type="email" name="email" id="email" value="" required>
-          <label for="email">Password:</label>
-          <input type="password" name="password" id="password" value="" required>
+          <label for="email-signin">E-Mail:</label>
+          <input type="email" name="email-signin" id="email-signin" value="" required>
+          <label for="password-signin">Password:</label>
+          <input type="password" name="password" id="password-signin" value="" required>
           <input type="submit" value="Login">
         </form>
     </div>
@@ -43,50 +43,47 @@
         <h2 class="mc-text-center">Sign Up</h2>
         <form data-ajax="false" id="signup-form">
           <div class="alert"></div>
-          <input type="hidden" name="active" id="active" value="1" required>
-          <label for="firstname">Firstname:</label>
-          <input type="text" name="firstname" id="firstname" value="" required>
-          <label for="lastname">Lastname:</label>
-          <input type="text" name="firstname" id="lastname" value="" required>
-          <label for="email">E-Mail:</label>
-          <input type="email" name="email" id="email" value="" required>
-          <label for="email">Password:</label>
-          <input type="password" name="password" id="password" value="" required>
+          <input type="hidden" name="active" id="active-signup" value="1">
+          <label for="firstname-signup">Firstname:</label>
+          <input type="text" name="firstname" id="firstname-signup" value="" required>
+          <label for="lastname-signup">Lastname:</label>
+          <input type="text" name="firstname" id="lastname-signup" value="" required>
+          <label for="email-signup">E-Mail:</label>
+          <input type="email" name="email" id="email-signup" value="" required>
+          <label for="password-signup">Password:</label>
+          <input type="password" name="password-signup" id="password-signup" value="" required>
           <input type="submit" value="Submit">
         </form>
-        <a href="#member">test</a>
     </div>
   </div>
 
   <div data-role="page" id="member">
-      <div data-role="panel" id="navigation">
-        <ul class="main-nav">
-          <li><a href="" id="logout">Logout</a></li>
-        </ul>
-      </div>
-      <div data-role="header">
-          <a href="#navigation" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-grid">Navigation</a>
-          <h1>My App</h1>          
-      </div>
-    	<div role="main" class="ui-content">
-        <table data-role="table" class="ui-responsive table-stroke">
-           <thead class="">
-             <tr>
-               <th data-priority="1">FirstName</th>
-               <th data-priority="2">LastName</th>
-               <th data-priority="3">Email</th>
-               <th data-priority="4">Active</th>
-             </tr>
-           </thead>
-           <tbody class="tbody-member">
-
-           </tbody>        
-        </table>
-    	</div>
-    	<div data-role="footer">
-    		<h4>Page Footer</h4>
-    	</div>
+    <div data-role="panel" id="navigation">
+      <ul class="main-nav">
+        <li><a href="" id="logout">Logout</a></li>
+      </ul>
     </div>
+    <div data-role="header">
+        <a href="#navigation" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-grid">Navigation</a>
+        <h1>My App</h1>          
+    </div>
+  	<div role="main" class="ui-content">
+      <table data-role="table" class="ui-responsive table-stroke">
+        <thead>
+          <tr>
+            <th data-priority="1">FirstName</th>
+            <th data-priority="2">LastName</th>
+            <th data-priority="3">Email</th>
+            <th data-priority="4">Active</th>
+          </tr>
+        </thead>
+        <tbody class="tbody-member"></tbody>
+      </table>
+  	</div>
+  	<div data-role="footer">
+  		<h4>Page Footer</h4>
+  	</div>
   </div>
+
 </body>
 </html>
