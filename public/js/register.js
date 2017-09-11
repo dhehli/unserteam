@@ -33,7 +33,7 @@ $(function(){
         $alert.text(msg.message);
       }else{
         $alert.addClass("alert-success");
-        $alert.html("User created, go back to the <a href='sign-in.html'>login Form</a>");
+        $alert.html("User created, go back to the <a href='#sign-in'>login Form</a>");
       }
     })
   })

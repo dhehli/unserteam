@@ -29,5 +29,7 @@ function ajaxHandler(method, url, data, auth, cb){
   .done(function( msg ) {
     const message = JSON.parse(msg);
     cb(message);
+  }).fail(function(msg){
+    console.log(msg);
   })
 }
