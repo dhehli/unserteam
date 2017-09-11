@@ -13,11 +13,11 @@ $(function(){
 
     const $alert = $(this).find(".alert");
 
-    const active = $("#active").val();
-    const firstName = $("#firstname").val();
-    const lastName = $("#lastname").val();
-    const eMail = $("#email").val();
-    const password = $("#password").val();
+    const active = $("#active-signup").val();
+    const firstName = $("#firstname-signup").val();
+    const lastName = $("#lastname-signup").val();
+    const eMail = $("#email-signup").val();
+    const password = $("#password-signup").val();
 
     const data = {
       Active: active,
@@ -44,8 +44,8 @@ $(function(){
 
     const $alert = $(this).find(".alert");
 
-    const email = $("#email").val();
-    const password = $("#password").val();
+    const email = $("#email-signin").val();
+    const password = $("#password-signin").val();
 
     const data = {
       email: email,
