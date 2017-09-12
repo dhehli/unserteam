@@ -12,6 +12,7 @@
   <script src="/js/main.js" defer></script>
   <script src="/js/register.js" defer></script>
   <script src="/js/user.js" defer></script>
+  <script src="/js/team.js" defer></script>
 </head>
 <body>
   <div data-role="page" id="welcome">
@@ -60,7 +61,9 @@
   <div data-role="page" id="user">
     <div data-role="panel" id="navigation">
       <ul class="main-nav">
-        <li><a href="" id="logout">Logout</a></li>
+        <li><a href="#user">User</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#" id="logout">Logout</a></li>
       </ul>
     </div>
     <div data-role="header">
@@ -69,6 +72,7 @@
         <a href="#user-edit" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">Options</a>
     </div>
   	<div role="main" class="ui-content">
+          <h2>User</h2>
       <table data-role="table" class="ui-responsive table-stroke">
         <thead>
           <tr>
@@ -90,7 +94,9 @@
   <div data-role="page" id="user-detail">
     <div data-role="panel" id="navigation">
       <ul class="main-nav">
-        <li><a href="" id="logout">Logout</a></li>
+        <li><a href="#user">User</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#" id="logout">Logout</a></li>
       </ul>
     </div>
     <div data-role="header">
@@ -98,6 +104,7 @@
         <h1>My App</h1>          
     </div>
   	<div role="main" class="ui-content">
+      <h2>User Detail</h2>
       <table data-role="table" class="ui-responsive table-stroke">
         <thead>
           <tr>
@@ -118,7 +125,9 @@
   <div data-role="page" id="user-edit">
     <div data-role="panel" id="navigation">
       <ul class="main-nav">
-        <li><a href="" id="logout">Logout</a></li>
+        <li><a href="#user">User</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#" id="logout">Logout</a></li>
       </ul>
     </div>
     <div data-role="header">
@@ -145,6 +154,69 @@
           <input type="password" name="password-signup" id="password-user-edit" value="" required>-->
           <input type="submit" value="Submit">
         </form>
+    </div>
+    <div data-role="footer">
+      <h4>Page Footer</h4>
+    </div>
+  </div>
+
+  <div data-role="page" id="team">
+    <div data-role="panel" id="navigation">
+      <ul class="main-nav">
+        <li><a href="#user">User</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#" id="logout">Logout</a></li>
+      </ul>
+    </div>
+    <div data-role="header">
+        <h1>My App</h1>
+        <a href="#navigation" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-grid">Navigation</a>
+        <a href="#user-edit" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">Options</a>
+    </div>
+    <div role="main" class="ui-content">
+      <h2>Team</h2>
+      <p><a href="#team-add" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-icon-left ui-icon-plus" id="user-link-edit">Add Team</a></p>
+      <table data-role="table" class="ui-responsive table-stroke">
+        <thead>
+          <tr>
+            <th data-priority="1">TeamId</th>
+            <th data-priority="2">Name</th>
+            <th data-priority="3">Website</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody class="tbody-team"></tbody>
+      </table>
+  	</div>
+    <div data-role="footer">
+      <h4>Page Footer</h4>
+    </div>
+  </div>
+
+  <div data-role="page" id="team-add">
+    <div data-role="panel" id="navigation">
+      <ul class="main-nav">
+        <li><a href="#user">User</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#" id="logout">Logout</a></li>
+      </ul>
+    </div>
+    <div data-role="header">
+        <h1>My App</h1>
+        <a href="#navigation" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-grid">Navigation</a>
+        <a href="#user-edit" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">Options</a>
+    </div>
+    <div role="main" class="ui-content">
+      <h2>Team Add</h2>
+      <form data-ajax="false" id="team-add-form">
+        <div class="alert"></div>
+        <input type="hidden" name="active" id="owner-team-add" value="1">
+        <label for="name-team-add">Name:</label>
+        <input type="text" name="name" id="name-team-add" value="" required>
+        <label for="website-team-add">Website:</label>
+        <input type="url" name="website" id="website-team-add" value="" required>
+        <input type="submit" value="Submit">
+      </form>
     </div>
     <div data-role="footer">
       <h4>Page Footer</h4>

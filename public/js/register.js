@@ -1,7 +1,8 @@
 //Hook to check if user is has session
+// TODO: chane that works always
 $(document).on("pagecontainershow", function () {
   const pageId = $('body').pagecontainer('getActivePage').prop('id');
-  if(pageId === "user" && !$.session.get('Authorization')){
+  if(!$.session.get('Authorization')){
     $.mobile.pageContainer.pagecontainer("change", "#welcome");
   }
 })

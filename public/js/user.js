@@ -65,7 +65,7 @@ $(document).on("pagecontainershow", function () {
   if(pageId === "user-edit") {
     ajaxHandler('get', `/api/v1/users/${$.session.get('loggedInUserId')}`, {}, 'session' , function(msg){
       const { UserId, Active, LastName, FirstName, Email } = msg[0];
-
+      $("#active-user-edit").val(Active).change();
       $("#firstname-user-edit").val(FirstName);
       $("#lastname-user-edit").val(LastName);
       $("#email-user-edit").val(Email);
@@ -95,7 +95,9 @@ $(function(){
       Password: password*/
     }
 
-    ajaxHandler('put', `/api/v1/users/${$.session.get('loggedInUserId')}`, data, 'session' , function(msg){
+    ajaxHandler('put', `/api/v1/users/${
+      $.session.get('loggedInUserId')
+    }`, data, 'session' , function(msg){
       if(msg.type == "Warning" || msg.type == "Error"){
         $alert.addClass("alert-danger");
         $alert.text(msg.message);
