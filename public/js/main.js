@@ -15,10 +15,10 @@ function ajaxHandler(method, url, data, auth, cb){
     data: JSON.stringify(data),
     beforeSend: function(xhr) {
        $.mobile.loading('show');
-       if(auth == "yes"){
+       if(auth === "yes"){
          const { email, password } = data;
          xhr.setRequestHeader('Authorization', basicAuth(email, password));
-       }else if (auth == "session") {
+       }else if (auth === "session") {
          xhr.setRequestHeader('Authorization', $.session.get('Authorization'));
        }
     },
@@ -29,7 +29,8 @@ function ajaxHandler(method, url, data, auth, cb){
   .done(function( msg ) {
     const message = JSON.parse(msg);
     cb(message);
-  }).fail(function(msg){
-    console.log(msg);
+  })
+  .fail(function(msg){
+    console.error(msg);
   })
 }

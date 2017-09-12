@@ -1,7 +1,7 @@
 //Hook to check if user is has session
 $(document).on("pagecontainershow", function () {
   const pageId = $('body').pagecontainer('getActivePage').prop('id');
-  if(pageId === "member" && !$.session.get('Authorization')){
+  if(pageId === "user" && !$.session.get('Authorization')){
     $.mobile.pageContainer.pagecontainer("change", "#welcome");
   }
 })
@@ -53,19 +53,22 @@ $(function(){
     }
 
     ajaxHandler('get', '/api/v1/users', data, 'yes', function(msg){
+      console.log(msg)
       if(msg.type == "Warning" || msg.type == "Error"){
         $alert.addClass("alert-danger");
         $alert.text(msg.message);
       }else{
+        //Read UserID over Email and set Session for Logged in User and Auth
+        const userId = msg.find(x => x.Email === email).UserId
+        $.session.set('loggedInUserId', userId);
         $.session.set('Authorization', basicAuth(email, password));
-        $.mobile.pageContainer.pagecontainer("change", "#member");
+        $.mobile.pageContainer.pagecontainer("change", "#user");
       }
-    });
+    })
   })
 
   //Handle Logout
   $("#logout").click(function(e){
-    console.log("logout");
     $.session.remove('Authorization');
     $.mobile.pageContainer.pagecontainer("change", "#welcome");
   })

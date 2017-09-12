@@ -11,7 +11,7 @@
   <script src="/js/jquery.session.js" defer></script>
   <script src="/js/main.js" defer></script>
   <script src="/js/register.js" defer></script>
-  <script src="/js/member.js" defer></script>
+  <script src="/js/user.js" defer></script>
 </head>
 <body>
   <div data-role="page" id="welcome">
@@ -57,7 +57,37 @@
     </div>
   </div>
 
-  <div data-role="page" id="member">
+  <div data-role="page" id="user">
+    <div data-role="panel" id="navigation">
+      <ul class="main-nav">
+        <li><a href="" id="logout">Logout</a></li>
+      </ul>
+    </div>
+    <div data-role="header">
+        <h1>My App</h1>
+        <a href="#navigation" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-grid">Navigation</a>
+        <a href="#user-edit" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">Options</a>
+    </div>
+  	<div role="main" class="ui-content">
+      <table data-role="table" class="ui-responsive table-stroke">
+        <thead>
+          <tr>
+            <th data-priority="1">FirstName</th>
+            <th data-priority="2">LastName</th>
+            <th data-priority="3">Email</th>
+            <th data-priority="4">Active</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody class="tbody-user"></tbody>
+      </table>
+  	</div>
+  	<div data-role="footer">
+  		<h4>Page Footer</h4>
+  	</div>
+  </div>
+
+  <div data-role="page" id="user-detail">
     <div data-role="panel" id="navigation">
       <ul class="main-nav">
         <li><a href="" id="logout">Logout</a></li>
@@ -77,12 +107,48 @@
             <th data-priority="4">Active</th>
           </tr>
         </thead>
-        <tbody class="tbody-member"></tbody>
+        <tbody class="tbody-user-detail"></tbody>
       </table>
   	</div>
   	<div data-role="footer">
   		<h4>Page Footer</h4>
   	</div>
+  </div>
+
+  <div data-role="page" id="user-edit">
+    <div data-role="panel" id="navigation">
+      <ul class="main-nav">
+        <li><a href="" id="logout">Logout</a></li>
+      </ul>
+    </div>
+    <div data-role="header">
+        <h1>My App</h1>
+        <a href="#navigation" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-grid">Navigation</a>
+        <a href="#user-edit" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">Options</a>
+    </div>
+  	<div role="main" class="ui-content">
+        <h2 class="mc-text-center">User-Edit</h2>
+        <form data-ajax="false" id="user-edit-form">
+          <div class="alert"></div>
+          <label for="firstname-user-edit">State:</label>
+          <select id="active-user-edit">
+            <option value="1">Active</option>
+            <option value="2">Passiv</option>
+          </select>
+          <label for="firstname-user-edit">Firstname:</label>
+          <input type="text" name="firstname" id="firstname-user-edit" value="" required>
+          <label for="lastname-user-edit">Lastname:</label>
+          <input type="text" name="firstname" id="lastname-user-edit" value="" required>
+          <label for="email-user-edit">E-Mail:</label>
+          <input type="email" name="email" id="email-user-edit" value="" required>
+          <!--<label for="password-user-edit">Password:</label>
+          <input type="password" name="password-signup" id="password-user-edit" value="" required>-->
+          <input type="submit" value="Submit">
+        </form>
+    </div>
+    <div data-role="footer">
+      <h4>Page Footer</h4>
+    </div>
   </div>
 
 </body>
