@@ -55,14 +55,6 @@ $(document).on("pagecontainershow", function () {
 
           $(".tbody-team-detail").html($trList);
         }
-
-        //Add Eventhandler for Teamdelete
-        $("#team-link-delete").click(function(e){
-          e.preventDefault();
-          ajaxHandler('delete', `/api/v1/teams/${currentTeamId}`, {}, 'session' , function(msg){
-            $.mobile.pageContainer.pagecontainer("change", "#team");
-          })
-        })
       })
     }
   }
@@ -130,5 +122,13 @@ $(function(){
       }
     })
   })
+  //Add Eventhandler for Teamdelete
+  $("#team-link-delete").click(function(e){
+    const currentTeamId = window.currentId;
+    e.preventDefault();
 
+    ajaxHandler('delete', `/api/v1/teams/${currentTeamId}`, {}, 'session' , function(msg){
+      $.mobile.pageContainer.pagecontainer("change", "#team");
+    })
+  })
 })
