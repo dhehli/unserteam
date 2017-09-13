@@ -96,8 +96,7 @@ $(function(){
     }
 
     ajaxHandler('put', `/api/v1/users/${
-      $.session.get('loggedInUserId')
-    }`, data, 'session' , function(msg){
+      $.session.get('loggedInUserId')}`, data, 'session' , function(msg){
       if(msg.type == "Warning" || msg.type == "Error"){
         $alert.addClass("alert-danger");
         $alert.text(msg.message);
