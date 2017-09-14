@@ -61,17 +61,18 @@
   </div>
 
   <div data-role="page" id="user">
-    <div data-role="panel" id="navigation">
-      <ul class="main-nav">
-        <li><a href="#user">User</a></li>
-        <li><a href="#team">Team</a></li><li><a href="#training">Trainings</a></li>
-        <li><a href="#" id="logout">Logout</a></li>
+    <div data-role="panel" data-display="push" data-theme="b" id="navigation">
+      <ul data-role="listview">
+          <li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li>
+          <li><a href="#user">User</a></li>
+          <li><a href="#team">Team</a></li><li><a href="#training">Trainings</a></li>
+          <li><a href="#" id="logout">Logout</a></li>
       </ul>
     </div>
     <div data-role="header">
-        <h1>My App</h1>
-        <a href="#navigation" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-grid">Navigation</a>
-        <a href="#user-edit" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">Options</a>
+      <h1>My App</h1>
+      <a href="#navigation" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-grid">Navigation</a>
+      <a href="#user-edit" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">Options</a>
     </div>
   	<div role="main" class="ui-content">
           <h2>User</h2>
