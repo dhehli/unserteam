@@ -30,8 +30,6 @@ $(document).on("pagecontainershow", function () {
         window.currentId = currentId;
       })
     })
-
-
   }
 
   //Load  Teamdetail List
@@ -59,33 +57,6 @@ $(document).on("pagecontainershow", function () {
         }
       })
     }
-
-    //Load Userlist
-    ajaxHandler('get', '/api/v1/users', {}, 'session' , function(msg){
-      // TODO: Handler Errors and Warning
-      if(Array.isArray(msg)){
-        const $liList = [];
-
-        msg.forEach(function(user){
-          const { UserId, LastName, FirstName } = user;
-
-          $liList.push(`
-            <li class="ui-li-static ui-body-inherit">${FirstName} ${LastName}
-              <a href="#" class="add-member-link" data-id="${UserId}">add</a>
-            </li>
-          `);
-        })
-
-        $(".user-list").html($liList);
-      }
-
-      //Add Eventhandler for Userdetail
-      $(".add-member-link").click(function(e){
-        const currentId = $(this).attr("data-id");
-        window.currentMemberId = currentId;
-        console.log(currentId)
-      })
-    })
   }
 
   //Read Entry for Teamedit
