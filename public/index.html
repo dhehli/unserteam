@@ -286,59 +286,23 @@
 
       <h2>Members</h2>
 
+      <form class="ui-filterable">
+        <input id="filterBasic-list" data-type="search">
+      </form>
+      <ul class="member-list-added" data-role="listview" data-filter="true" data-input="#filterBasic-input">
+
+      </ul>
+
       <h2>Add Members</h2>
       <form class="ui-filterable">
         <input id="filterBasic-input" data-type="search">
       </form>
-      <ul class="user-list" data-role="listview" data-filter="true" data-input="#filterBasic-input">
+      <ul class="member-list-toadd" data-role="listview" data-filter="true" data-input="#filterBasic-input">
 
       </ul>
-    </div>
-    <div data-role="footer">
-      <h4>Page Footer</h4>
-    </div>
-  </div>
 
-  <div data-role="page" id="member">
-    <div data-role="panel" id="navigation">
-      <ul class="main-nav">
-        <li><a href="#user">User</a></li>
-        <li><a href="#team">Team</a></li><li><a href="#member">Member</a></li>
-        <li><a href="#" id="logout">Logout</a></li>
+
       </ul>
-    </div>
-    <div data-role="header">
-        <h1>My App</h1>
-        <a href="#navigation" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-grid">Navigation</a>
-        <a href="#user-edit" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">Options</a>
-    </div>
-    <div role="main" class="ui-content">
-      <h2>Add Member to Team</h2>
-      <form data-ajax="false" id="member-add-form">
-        <!--<fieldset data-role="collapsible">
-          <legend>Legend</legend>
-          <div data-role="controlgroup">
-            <input type="checkbox" name="checkbox-1-a" id="checkbox-1-a">
-            <label for="checkbox-1-a">One</label>
-            <input type="checkbox" name="checkbox-2-a" id="checkbox-2-a">
-            <label for="checkbox-2-a">Two</label>
-            <input type="checkbox" name="checkbox-3-a" id="checkbox-3-a">
-            <label for="checkbox-3-a">Three</label>
-          </div>
-        </fieldset>
-        <fieldset data-role="collapsible" data-id="1">
-              <legend>Test</legend>
-              <div data-role="controlgroup">
-                <input type="checkbox" name="checkbox-5-a" id="checkbox-5-a">
-                <label for="checkbox-5-a">asdf</label>
-                <input type="checkbox" name="checkbox-6-a" id="checkbox-6-a">
-                <label for="checkbox-6-a">Two</label>
-                <input type="checkbox" name="checkbox-7-a" id="checkbox-7-a">
-                <label for="checkbox-7-a">Three</label>
-              </div>
-            </fieldset>-->
-      </form>
-
     </div>
     <div data-role="footer">
       <h4>Page Footer</h4>
