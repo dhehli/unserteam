@@ -14,6 +14,7 @@
   <script src="/js/user.js" defer></script>
   <script src="/js/team.js" defer></script>
   <script src="/js/member.js" defer></script>
+  <script src="/js/training.js" defer></script>
 </head>
 <body>
   <div data-role="page" id="welcome">
@@ -63,7 +64,7 @@
     <div data-role="panel" id="navigation">
       <ul class="main-nav">
         <li><a href="#user">User</a></li>
-        <li><a href="#team">Team</a></li><li><a href="#member">Member</a></li>
+        <li><a href="#team">Team</a></li><li><a href="#training">Trainings</a></li>
         <li><a href="#" id="logout">Logout</a></li>
       </ul>
     </div>
@@ -96,7 +97,7 @@
     <div data-role="panel" id="navigation">
       <ul class="main-nav">
         <li><a href="#user">User</a></li>
-        <li><a href="#team">Team</a></li><li><a href="#member">Member</a></li>
+        <li><a href="#team">Team</a></li><li><a href="#training">Trainings</a></li>
         <li><a href="#" id="logout">Logout</a></li>
       </ul>
     </div>
@@ -127,7 +128,7 @@
     <div data-role="panel" id="navigation">
       <ul class="main-nav">
         <li><a href="#user">User</a></li>
-        <li><a href="#team">Team</a></li><li><a href="#member">Member</a></li>
+        <li><a href="#team">Team</a></li><li><a href="#training">Trainings</a></li>
         <li><a href="#" id="logout">Logout</a></li>
       </ul>
     </div>
@@ -165,7 +166,7 @@
     <div data-role="panel" id="navigation">
       <ul class="main-nav">
         <li><a href="#user">User</a></li>
-        <li><a href="#team">Team</a></li><li><a href="#member">Member</a></li>
+        <li><a href="#team">Team</a></li><li><a href="#training">Trainings</a></li>
         <li><a href="#" id="logout">Logout</a></li>
       </ul>
     </div>
@@ -198,7 +199,7 @@
     <div data-role="panel" id="navigation">
       <ul class="main-nav">
         <li><a href="#user">User</a></li>
-        <li><a href="#team">Team</a></li><li><a href="#member">Member</a></li>
+        <li><a href="#team">Team</a></li><li><a href="#training">Trainings</a></li>
         <li><a href="#" id="logout">Logout</a></li>
       </ul>
     </div>
@@ -228,7 +229,7 @@
     <div data-role="panel" id="navigation">
       <ul class="main-nav">
         <li><a href="#user">User</a></li>
-        <li><a href="#team">Team</a></li><li><a href="#member">Member</a></li>
+        <li><a href="#team">Team</a></li><li><a href="#training">Trainings</a></li>
         <li><a href="#" id="logout">Logout</a></li>
       </ul>
     </div>
@@ -257,7 +258,7 @@
     <div data-role="panel" id="navigation">
       <ul class="main-nav">
         <li><a href="#user">User</a></li>
-        <li><a href="#team">Team</a></li><li><a href="#member">Member</a></li>
+        <li><a href="#team">Team</a></li><li><a href="#training">Trainings</a></li>
         <li><a href="#" id="logout">Logout</a></li>
       </ul>
     </div>
@@ -292,7 +293,6 @@
       <ul class="member-list-added" data-role="listview" data-filter="true" data-input="#filterBasic-list">
 
       </ul>
-
       <h2>Add Members</h2>
       <form class="ui-filterable">
         <input id="filterBasic-input" data-type="search">
@@ -300,9 +300,80 @@
       <ul class="member-list-toadd" data-role="listview" data-filter="true" data-input="#filterBasic-input">
 
       </ul>
+    </div>
+    <div data-role="footer">
+      <h4>Page Footer</h4>
+    </div>
+  </div>
 
-
+  <div data-role="page" id="training">
+    <div data-role="panel" id="navigation">
+      <ul class="main-nav">
+        <li><a href="#user">User</a></li>
+        <li><a href="#team">Team</a></li><li><a href="#training">Trainings</a></li>
+        <li><a href="#" id="logout">Logout</a></li>
       </ul>
+    </div>
+    <div data-role="header">
+        <h1>My App</h1>
+        <a href="#navigation" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-grid">Navigation</a>
+        <a href="#user-edit" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">Options</a>
+    </div>
+    <div role="main" class="ui-content">
+      <h2>Training</h2>
+      <p><a href="#training-add" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-icon-left ui-icon-plus" id="user-link-edit">Add Training</a></p>
+      <table data-role="table" class="ui-responsive table-stroke">
+        <thead>
+          <tr>
+            <th data-priority="1">TrainingId</th>
+            <th data-priority="2">Title</th>
+            <th data-priority="3">Date</th>
+            <th data-priority="4">Time</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody class="tbody-training"></tbody>
+      </table>
+    </div>
+    <div data-role="footer">
+      <h4>Page Footer</h4>
+    </div>
+  </div>
+
+  <div data-role="page" id="training-add">
+    <div data-role="panel" id="navigation">
+      <ul class="main-nav">
+        <li><a href="#user">User</a></li>
+        <li><a href="#team">Team</a></li><li><a href="#training">Trainings</a></li>
+        <li><a href="#" id="logout">Logout</a></li>
+      </ul>
+    </div>
+    <div data-role="header">
+        <h1>My App</h1>
+        <a href="#navigation" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-grid">Navigation</a>
+        <a href="#user-edit" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">Options</a>
+    </div>
+    <div role="main" class="ui-content">
+      <h2>Training Add</h2>
+      <form data-ajax="false" id="training-add-form">
+        <div class="alert"></div>
+        <label for="team-training-add">Team:</label>
+        <select id="team-training-add" required></select>
+        <label for="title-training-add">Title:</label>
+        <input type="text" name="name" id="title-training-add" value="" required>
+        <label for="date-training-add">Date:</label>
+        <input type="date" data-role="date" id="date-training-add" required>
+        <label for="time-training-add">Time:</label>
+        <input type="time" data-role="time" id="time-training-add" required>
+        <label for="duration-training-add">Duration:</label>
+        <input type="text" name="name" id="duration-training-add" value="">
+        <label for="participants-training-add">Min. Participants:</label>
+        <input type="text" name="name" id="participants-training-add" value="">
+        <label for="description-training-add">Description:</label>
+        <textarea name="name" id="description-training-add" cols="30" rows="20"></textarea>
+        <input type="submit" value="Submit">
+      </form>
     </div>
     <div data-role="footer">
       <h4>Page Footer</h4>
