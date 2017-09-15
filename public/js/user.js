@@ -17,7 +17,7 @@ $(document).on("pagecontainershow", function () {
               <td>${LastName}</td>
               <td>${Email}</td>
               <td>${Active}</td>
-              <td><a href="#user-detail" data-id="${UserId}" class="user-link-detail ui-icon-home">Detail</a></td>
+              <td><a href="#user-detail" data-id="${UserId}" class="user-link-detail ui-btn ui-icon-plus ui-btn-icon-notext ui-corner-all">Detail</a></td>
             </tr>
           `);
         })

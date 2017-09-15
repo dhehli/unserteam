@@ -16,7 +16,7 @@ $(document).on("pagecontainershow", function () {
               <td>${TeamId}</td>
               <td>${Name}</td>
               <td>${Website || ''}</td>
-              <td><a href="#team-detail" data-id="${TeamId}" class="team-link-detail ui-icon-home">Detail</a></td>
+              <td><a href="#team-detail" data-id="${TeamId}" class="team-link-detail ui-btn ui-icon-plus ui-btn-icon-notext ui-corner-all">Detail</a></td>
             </tr>
           `);
         })
@@ -39,21 +39,19 @@ $(document).on("pagecontainershow", function () {
     if(currentTeamId){
       ajaxHandler('get', `/api/v1/teams/${currentTeamId}`, {}, 'session' , function(msg){
         if(Array.isArray(msg)){
-          const $trList = [];
+          const $liList = [];
 
           msg.forEach(function(user){
             const { TeamId, OwnerId, Name, Website } = user;
 
-            $trList.push(`
-              <tr>
-                <td>${TeamId}</td>
-                <td>${Name}</td>
-                <td>${Website || ''}</td>
-              </tr>
+            $liList.push(`
+              <li><label>TeamId</label> ${TeamId}</li>
+              <li><label>Name</label> ${Name}</li>
+              <li><label>Website</label> ${Website || ''}</li>
             `);
           })
 
-          $(".tbody-team-detail").html($trList);
+          $(".listview-team-detail").html($liList).listview('refresh').trigger("create");;
         }
       })
     }

@@ -8,7 +8,6 @@ $(document).on("pagebeforeshow", function () {
     function loadAddedMembers(){
       //Load Memberlist of currentTeam
       ajaxHandler('get', `/api/v1/teams/${teamId}`, {}, 'session' , function(msg){
-        console.log(msg)
         // TODO: Handler Errors and Warning
         if(Array.isArray(msg)){
           const { Members } = msg[0];
@@ -23,12 +22,9 @@ $(document).on("pagebeforeshow", function () {
 
             const $liList = [];
 
-            console.log(userIdArr)
-
             userIdArr.forEach(function(user){
               const { UserId, MemberId } = user;
               ajaxHandler('get', `/api/v1/users/${UserId}`, {}, 'session' , function(msg){
-                console.log("get users")
                   const { UserId, Active, LastName, FirstName, Email } = msg[0];
 
                   $liList.push(`

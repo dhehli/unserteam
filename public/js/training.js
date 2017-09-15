@@ -22,7 +22,7 @@ $(document).on("pagecontainershow", function () {
                 <td>${Date}</td>
                 <td>${Time}</td>
                 <td>${Name}</td>
-                <td><a href="#training-detail" data-id="${TrainingId}" class="training-link-detail ui-icon-home">Detail</a></td>
+                <td><a href="#training-detail" data-id="${TrainingId}" class="training-link-detail ui-btn ui-icon-plus ui-btn-icon-notext ui-corner-all">Detail</a></td>
               </tr>
             `);
 
@@ -78,6 +78,7 @@ $(document).on("pagecontainershow", function () {
 
   //Load Training Select Field
   if(pageId === "training-add" || pageId === "training-edit"){
+    // TODO: Fix bug when select field is not changed
     ajaxHandler('get', '/api/v1/teams', {}, 'session' , function(msg){
       // TODO: Handler Errors and Warning
       if(Array.isArray(msg)){

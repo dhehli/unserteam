@@ -15,6 +15,7 @@
   <script src="/js/team.js" defer></script>
   <script src="/js/member.js" defer></script>
   <script src="/js/training.js" defer></script>
+  <script src="/js/participants.js" defer></script>
 </head>
 <body>
   <div data-role="page" id="welcome">
@@ -271,16 +272,9 @@
     <div role="main" class="ui-content">
       <h2>Team</h2>
       <p><a href="#team-add" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-icon-left ui-icon-plus">Add Team</a></p>
-      <table data-role="table" class="ui-responsive table-stroke">
-        <thead>
-          <tr>
-            <th data-priority="1">TeamId</th>
-            <th data-priority="2">Name</th>
-            <th data-priority="3">Website</th>
-          </tr>
-        </thead>
-        <tbody class="tbody-team-detail"></tbody>
-      </table>
+      <ul data-role="listview" class="listview-team-detail">
+
+      </ul>
       <p>
         <a href="#team-edit" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-icon-left ui-icon-edit" id="team-link-edit">Edit Team</a>
         <a href="#" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-icon-left ui-icon-delete" id="team-link-delete">Delete Team</a>
@@ -365,6 +359,16 @@
         <a href="#training-edit" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-icon-left ui-icon-edit" id="training-link-edit">Edit Training</a>
         <a href="#" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-icon-left ui-icon-delete" id="training-link-delete">Delete Training</a>
       </p>
+
+      <h2>Participants</h2>
+      <p>
+        <a href="#" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-icon-left ui-icon-plus add-participant-link">Join Training</a>
+        <a href="#" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-icon-left ui-icon-delete remove-participant-link">Cancel Training</a>
+      </p>
+      <form class="ui-filterable">
+        <input id="filterBasic-participant" data-type="search">
+      </form>
+      <ul class="participant-list" data-role="listview" data-filter="true" data-input="#filterBasic-participant">
     </div>
     <div data-role="footer">
       <h4>Page Footer</h4>
