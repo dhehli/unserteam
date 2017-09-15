@@ -14,3 +14,12 @@
     background-color: #dff0d8;
     border-color: #d6e9c6;
 }
+.listview-training-detail label{
+  font-weight: bold;
+}
+@media (min-width: 600px) {
+  .listview-training-detail label{
+    float: left;
+    min-width: 200px;
+  }
+}

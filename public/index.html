@@ -330,7 +330,7 @@
             <th data-priority="2">Title</th>
             <th data-priority="3">Date</th>
             <th data-priority="4">Time</th>
-            <th></th>
+            <th data-priority="5">Team</th>
             <th></th>
           </tr>
         </thead>
@@ -358,16 +358,9 @@
     <div role="main" class="ui-content">
       <h2>Training</h2>
       <p><a href="#training-add" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-icon-left ui-icon-plus">Add Training</a></p>
-      <table data-role="table" class="ui-responsive table-stroke">
-        <thead>
-          <tr>
-            <th data-priority="1">TeamId</th>
-            <th data-priority="2">Name</th>
-            <th data-priority="3">Website</th>
-          </tr>
-        </thead>
-        <tbody class="tbody-team-detail"></tbody>
-      </table>
+      <ul data-role="listview" class="listview-training-detail">
+
+      </ul>
       <p>
         <a href="#training-edit" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-icon-left ui-icon-edit" id="training-link-edit">Edit Training</a>
         <a href="#" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-icon-left ui-icon-delete" id="training-link-delete">Delete Training</a>
@@ -409,6 +402,45 @@
         <input type="text" name="name" id="participants-training-add" value="">
         <label for="description-training-add">Description:</label>
         <textarea name="name" id="description-training-add" cols="30" rows="20"></textarea>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+    <div data-role="footer">
+      <h4>Page Footer</h4>
+    </div>
+  </div>
+
+  <div data-role="page" id="training-edit">
+    <div data-role="panel" id="navigation">
+      <ul class="main-nav">
+        <li><a href="#user">User</a></li>
+        <li><a href="#team">Team</a></li><li><a href="#training">Trainings</a></li>
+        <li><a href="#" id="logout">Logout</a></li>
+      </ul>
+    </div>
+    <div data-role="header">
+        <h1>My App</h1>
+        <a href="#navigation" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-left ui-icon-grid">Navigation</a>
+        <a href="#user-edit" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">Options</a>
+    </div>
+    <div role="main" class="ui-content">
+      <h2>Training Edit</h2>
+      <form data-ajax="false" id="training-edit-form">
+        <div class="alert"></div>
+        <label for="team-training-edit">Team:</label>
+        <select id="team-training-edit" required></select>
+        <label for="title-training-add">Title:</label>
+        <input type="text" name="name" id="title-training-edit" value="" required>
+        <label for="date-training-edit">Date:</label>
+        <input type="date" data-role="date" id="date-training-edit" required>
+        <label for="time-training-edit">Time:</label>
+        <input type="time" data-role="time" id="time-training-edit" required>
+        <label for="duration-training-edit">Duration:</label>
+        <input type="text" name="name" id="duration-training-edit" value="">
+        <label for="participants-training-edit">Min. Participants:</label>
+        <input type="text" name="name" id="participants-training-edit" value="">
+        <label for="description-training-edit">Description:</label>
+        <textarea name="name" id="description-training-edit" cols="30" rows="20"></textarea>
         <input type="submit" value="Submit">
       </form>
     </div>
