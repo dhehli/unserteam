@@ -39,6 +39,32 @@ $(document).on("pagecontainershow", function () {
     }
     loadAddedParticipants();
 
+    //CHeck if User is Already a Participant of this training
+    function isAlreadyParticipant(cb){
+      const trainingId = window.currentId;
+      ajaxHandler('get', `/api/v1/trainings/${trainingId}`, {}, 'session' , function(msg){
+        if(Array.isArray(msg)){
+          const { Participants } = msg[0];
+
+          let alreadyApplied = Participants.find(function(e) {
+            return e.UserId === $.session.get('loggedInUserId');
+          })
+          cb(alreadyApplied ? alreadyApplied.ParticipantId : false);
+        }
+      })
+    }
+
+    //Laod inital Button
+    isAlreadyParticipant(function(isApplied){
+      if(isApplied){
+        $(".add-participant-link").hide();
+        $(".remove-participant-link").show();
+      }else{
+        $(".add-participant-link").show();
+        $(".remove-participant-link").hide();
+      }
+    });
+
     $(".add-participant-link").click(function(e){
       e.preventDefault();
       const trainingId = window.currentId;
@@ -51,6 +77,8 @@ $(document).on("pagecontainershow", function () {
 
       ajaxHandler('post', '/api/v1/participants', data, 'session' , function(msg){
         loadAddedParticipants();
+        $(".add-participant-link").hide();
+        $(".remove-participant-link").show();
       })
     })
 
@@ -63,9 +91,14 @@ $(document).on("pagecontainershow", function () {
         UserId: userId,
         TrainingId: trainingId
       }
-
-      ajaxHandler('post', '/api/v1/participants', data, 'session' , function(msg){
-        loadAddedParticipants();
+      isAlreadyParticipant(function(participantId){
+        if(participantId){
+          ajaxHandler('delete', `/api/v1/participants/${participantId}`, data, 'session' , function(msg){
+            loadAddedParticipants();
+            $(".add-participant-link").show();
+            $(".remove-participant-link").hide();
+          })
+        }
       })
     })
   }
