@@ -3,7 +3,7 @@ $(document).on("pagecontainershow", function () {
 
   //Load Training List
   if(pageId === "training"){
-    ajaxHandler('get', '/api/v1/training', {}, 'session' , function(msg){
+    ajaxHandler('get', '/api/v1/trainings', {}, 'session' , function(msg){
       // TODO: Handler Errors and Warning
       if(Array.isArray(msg)){
         const $trList = [];
@@ -34,16 +34,16 @@ $(document).on("pagecontainershow", function () {
   }
 
   //Load  Teamdetail List
-  if(pageId === "team-detail") {
-    const currentTeamId = window.currentId;
+  if(pageId === "training-detail") {
+    const currentTrainingId = window.currentId;
 
-    if(currentTeamId){
-      ajaxHandler('get', `/api/v1/teams/${currentTeamId}`, {}, 'session' , function(msg){
+    if(currentTrainingId){
+      ajaxHandler('get', `/api/v1/trainings/${currentTrainingId}`, {}, 'session' , function(msg){
         if(Array.isArray(msg)){
           const $trList = [];
 
-          msg.forEach(function(user){
-            const { TeamId, OwnerId, Name, Website } = user;
+          msg.forEach(function(training){
+            const { TrainingId, TeamId, Title, Date, Time, Description } = training;
 
             $trList.push(`
               <tr>
