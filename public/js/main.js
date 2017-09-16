@@ -1,6 +1,13 @@
 const baseURI = "https://zbw.lump.ch";
 
-//FirstAuthentication with session
+// TODO: Add Doc to Methods http://yui.github.io/yuidoc/
+/**
+* This is the description for my class.
+*
+* @class MyClass
+* @constructor
+*/
+
 function basicAuth(user, password) {
   const tok = user + ':' + password;
   const hash = btoa(tok);
