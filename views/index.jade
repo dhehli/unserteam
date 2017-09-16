@@ -202,7 +202,7 @@ html(lang="en")
           .alert
           label(for='team-training-add') Team:
           select#team-training-add(required='')
-            option(value='') " "
+            option(value="" selected, disabled, hidden) Select Team
           label(for='title-training-add') Title:
           input#title-training-add(type='text', name='name', value='', required='')
           label(for='date-training-add') Date:
@@ -225,7 +225,7 @@ html(lang="en")
           .alert
           label(for='team-training-edit') Team:
           select#team-training-edit(required='')
-            option(value='') " "
+            option(value="" selected, disabled, hidden) Select Team
           label(for='title-training-add') Title:
           input#title-training-edit(type='text', name='name', value='', required='')
           label(for='date-training-edit') Date:
