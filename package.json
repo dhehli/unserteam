@@ -8,7 +8,7 @@
     "build": "webpack",
     "build:watch": "webpack --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "uglify": "uglifyjs --compress --mangle -o ./public/js/bundle.js -- ./public/js/main.js ./public/js/member.js ./public/js/participants.js ./public/js/register.js ./public/js/team.js ./public/js/training.js ./public/js/user.js"
+    "uglify": "uglifyjs --compress --mangle -o ./public/js/bundle.js -- ./public/js/main.js ./public/js/member.js ./public/js/participants.js ./public/js/register.js ./public/js/team.js ./public/js/training.js ./public/js/user.js ./public/js/jquery.session.js"
   },
   "author": "",
   "license": "ISC",
