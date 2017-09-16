@@ -1,0 +1,242 @@
+doctype html
+html(lang="en")
+  head
+    title Unser Team
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    link(rel="stylesheet", href="/css/jquery.mobile-1.4.5.min.css")
+    link(rel="stylesheet", href="/css/main.css")
+    script(src="/js/jquery-1.11.1.min.js", defer)
+    script(src="/js/jquery.mobile-1.4.5.min.js", defer)
+    script(src="/js/bundle.js", defer)
+  body
+    #welcome(data-role='page')
+      .ui-content(role='main')
+        h2.mc-text-center Welcome!
+        h3 Existing Users
+        a.ui-btn.ui-corner-all(href='#signin-page') Sign In
+        h3 Don't have an account?
+        a.ui-btn.ui-corner-all(href='#signup-page') Sign Up
+    #signin-page(data-role='page')
+      .ui-content(role='main')
+        h2.mc-text-center Sign In
+        form#signin-form(data-ajax='false')
+          .alert
+          label(for='email-signin') E-Mail:
+          input#email-signin(type='email', name='email-signin', value='', required='')
+          label(for='password-signin') Password:
+          input#password-signin(type='password', name='password', value='', required='')
+          input(type='submit', value='Login')
+    #signup-page(data-role='page')
+      .ui-content(role='main')
+        h2.mc-text-center Sign Up
+        form#signup-form(data-ajax='false')
+          .alert
+          input#active-signup(type='hidden', name='active', value='1')
+          label(for='firstname-signup') Firstname:
+          input#firstname-signup(type='text', name='firstname', value='', required='')
+          label(for='lastname-signup') Lastname:
+          input#lastname-signup(type='text', name='firstname', value='', required='')
+          label(for='email-signup') E-Mail:
+          input#email-signup(type='email', name='email', value='', required='')
+          label(for='password-signup') Password:
+          input#password-signup(type='password', name='password-signup', value='', required='')
+          input(type='submit', value='Submit')
+    #user(data-role='page')
+      include header
+      .ui-content(role='main')
+        h2 User
+        .table-user-list
+          .alert
+          table.ui-responsive.table-stroke(data-role='table')
+            thead
+              tr
+                th(data-priority='1') FirstName
+                th(data-priority='2') LastName
+                th(data-priority='3') Email
+                th(data-priority='4') Active
+                th
+            tbody.tbody-user
+      include footer
+    #user-detail(data-role='page')
+      include header
+      .ui-content(role='main')
+        h2 User Detail
+        .table-user-detail
+          .alert
+          table.ui-responsive.table-stroke(data-role='table')
+            thead
+              tr
+                th(data-priority='1') FirstName
+                th(data-priority='2') LastName
+                th(data-priority='3') Email
+                th(data-priority='4') Active
+            tbody.tbody-user-detail
+      include footer
+    #user-edit(data-role='page')
+      include header
+      .ui-content(role='main')
+        h2.mc-text-center User-Edit
+        form#user-edit-form(data-ajax='false')
+          .alert
+          label(for='firstname-user-edit') State:
+          select#active-user-edit
+            option(value='1') Active
+            option(value='2') Passiv
+          label(for='firstname-user-edit') Firstname:
+          input#firstname-user-edit(type='text', name='firstname', value='', required='')
+          label(for='lastname-user-edit') Lastname:
+          input#lastname-user-edit(type='text', name='firstname', value='', required='')
+          label(for='email-user-edit') E-Mail:
+          input#email-user-edit(type='email', name='email', value='', required='')
+          input(type='submit', value='Submit')
+      include footer
+    #team(data-role='page')
+      include header
+      .ui-content(role='main')
+        h2 Team
+        p
+          a.ui-btn.ui-btn-inline.ui-shadow.ui-corner-all.ui-btn-icon-left.ui-icon-plus(href='#team-add') Add Team
+        .table-team-list
+          .alert
+          table.ui-responsive.table-stroke(data-role='table')
+            thead
+              tr
+                th(data-priority='1') TeamId
+                th(data-priority='2') Name
+                th(data-priority='3') Website
+                th
+            tbody.tbody-team
+      include footer
+    #team-add(data-role='page')
+      include header
+      .ui-content(role='main')
+        h2 Team Add
+        form#team-add-form(data-ajax='false')
+          .alert
+          input#owner-team-add(type='hidden', name='active', value='')
+          label(for='name-team-add') Name:
+          input#name-team-add(type='text', name='name', value='', required='')
+          label(for='website-team-add') Website:
+          input#website-team-add(type='url', name='website', value='', required='')
+          input(type='submit', value='Submit')
+      include footer
+    #team-edit(data-role='page')
+      include header
+      .ui-content(role='main')
+        h2 Team Edit
+        form#team-edit-form(data-ajax='false')
+          .alert
+          label(for='name-team-edit') Name:
+          input#name-team-edit(type='text', name='name', value='', required='')
+          label(for='website-team-edit') Website:
+          input#website-team-edit(type='url', name='website', value='', required='')
+          input(type='submit', value='Submit')
+      include footer
+    #team-detail(data-role='page')
+      include header
+      .ui-content(role='main')
+        h2 Team
+        p
+          a.ui-btn.ui-btn-inline.ui-shadow.ui-corner-all.ui-btn-icon-left.ui-icon-plus(href='#team-add') Add Team
+        .wrapper-listview-team-detail
+          .alert
+          ul.listview-team-detail(data-role='listview')
+        p
+          a#team-link-edit.ui-btn.ui-btn-inline.ui-shadow.ui-corner-all.ui-btn-icon-left.ui-icon-edit(href='#team-edit') Edit Team
+          a#team-link-delete.ui-btn.ui-btn-inline.ui-shadow.ui-corner-all.ui-btn-icon-left.ui-icon-delete(href='#') Delete Team
+        h2 Members
+        .alert.alert-member
+        form.ui-filterable
+          input#filterBasic-list(data-type='search')
+        ul.member-list-added(data-role='listview', data-filter='true', data-input='#filterBasic-list')
+        h2 Add Members
+        form.ui-filterable
+          input#filterBasic-input(data-type='search')
+        ul.member-list-toadd(data-role='listview', data-filter='true', data-input='#filterBasic-input')
+      include footer
+    #training(data-role='page')
+      include header
+      .ui-content(role='main')
+        h2 Training
+        p
+          a.ui-btn.ui-btn-inline.ui-shadow.ui-corner-all.ui-btn-icon-left.ui-icon-plus(href='#training-add') Add Training
+        .table-training-list
+          .alert
+          table.ui-responsive.table-stroke(data-role='table')
+            thead
+              tr
+                th(data-priority='1') TrainingId
+                th(data-priority='2') Title
+                th(data-priority='3') Date
+                th(data-priority='4') Time
+                th(data-priority='5') Team
+                th
+            tbody.tbody-training
+      include footer
+    #training-detail(data-role='page')
+      include header
+      .ui-content(role='main')
+        h2 Training
+        .alert.alert-training
+        p
+          a.ui-btn.ui-btn-inline.ui-shadow.ui-corner-all.ui-btn-icon-left.ui-icon-plus(href='#training-add') Add Training
+        ul.listview-training-detail(data-role='listview')
+        p
+          a#training-link-edit.ui-btn.ui-btn-inline.ui-shadow.ui-corner-all.ui-btn-icon-left.ui-icon-edit(href='#training-edit') Edit Training
+          a#training-link-delete.ui-btn.ui-btn-inline.ui-shadow.ui-corner-all.ui-btn-icon-left.ui-icon-delete(href='#') Delete Training
+        h2 Participants
+        .alert.alert-participants
+        p
+          a.ui-btn.ui-btn-inline.ui-shadow.ui-corner-all.ui-btn-icon-left.ui-icon-plus.add-participant-link(href='#') Join Training
+          a.ui-btn.ui-btn-inline.ui-shadow.ui-corner-all.ui-btn-icon-left.ui-icon-delete.remove-participant-link(href='#') Cancel Training
+        form.ui-filterable
+          input#filterBasic-participant(data-type='search')
+        ul.participant-list(data-role='listview', data-filter='true', data-input='#filterBasic-participant')
+      include footer
+    #training-add(data-role='page')
+      include header
+      .ui-content(role='main')
+        h2 Training Add
+        form#training-add-form(data-ajax='false')
+          .alert
+          label(for='team-training-add') Team:
+          select#team-training-add(required='')
+            option(value='') " "
+          label(for='title-training-add') Title:
+          input#title-training-add(type='text', name='name', value='', required='')
+          label(for='date-training-add') Date:
+          input#date-training-add(type='date', data-role='date', required='')
+          label(for='time-training-add') Time:
+          input#time-training-add(type='time', data-role='time', required='')
+          label(for='duration-training-add') Duration:
+          input#duration-training-add(type='text', name='name', value='')
+          label(for='participants-training-add') Min. Participants:
+          input#participants-training-add(type='text', name='name', value='')
+          label(for='description-training-add') Description:
+          textarea#description-training-add(name='name', cols='30', rows='20')
+          input(type='submit', value='Submit')
+      include footer
+    #training-edit(data-role='page')
+      include header
+      .ui-content(role='main')
+        h2 Training Edit
+        form#training-edit-form(data-ajax='false')
+          .alert
+          label(for='team-training-edit') Team:
+          select#team-training-edit(required='')
+            option(value='') " "
+          label(for='title-training-add') Title:
+          input#title-training-edit(type='text', name='name', value='', required='')
+          label(for='date-training-edit') Date:
+          input#date-training-edit(type='date', data-role='date', required='')
+          label(for='time-training-edit') Time:
+          input#time-training-edit(type='time', data-role='time', required='')
+          label(for='duration-training-edit') Duration:
+          input#duration-training-edit(type='text', name='name', value='')
+          label(for='participants-training-edit') Min. Participants:
+          input#participants-training-edit(type='text', name='name', value='')
+          label(for='description-training-edit') Description:
+          textarea#description-training-edit(name='name', cols='30', rows='20')
+          input(type='submit', value='Submit')
+      include footer
