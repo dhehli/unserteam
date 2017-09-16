@@ -68,7 +68,7 @@ $(document).on("pagecontainershow", () => {
         }else{
           const { Participants } = message[0];
 
-          let alreadyApplied = Participants.find(function(e) {
+          let alreadyApplied = Participants.find(e => {
             return e.UserId === $.session.get('loggedInUserId');
           })
           cb(alreadyApplied ? alreadyApplied.ParticipantId : false);
@@ -121,7 +121,7 @@ $(document).on("pagecontainershow", () => {
         TrainingId: trainingId
       }
 
-      isAlreadyParticipant(function(participantId){
+      isAlreadyParticipant(participantId => {
         if(participantId){
           ajaxHandler('delete', `/api/v1/participants/${participantId}`, data, 'session')
           .then(msg => {

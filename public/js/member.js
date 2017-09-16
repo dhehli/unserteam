@@ -19,7 +19,7 @@ $(document).on("pagebeforeshow", () => {
         }else{
           const { Members } = message[0];
 
-          Members.forEach(function(member){
+          Members.forEach(member => {
             const { UserId, MemberId } = member;
             userIdArr.push({UserId, MemberId})
           })
@@ -50,6 +50,7 @@ $(document).on("pagebeforeshow", () => {
           })
           .then(() => {
             $(".remove-member-link").click(function(e){
+              //Bug Arrow function not working here
               e.preventDefault();
               const memberId = $(this).attr("data-id");
 
@@ -97,6 +98,7 @@ $(document).on("pagebeforeshow", () => {
       })
       .then(() =>{
         $(".add-member-link").click(function(e){
+            //Bug Arrow function not working here
           e.preventDefault();
           const teamId = window.currentId;
           const userId = $(this).attr("data-id");
