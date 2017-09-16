@@ -8,12 +8,12 @@ function basicAuth(user, password) {
 }
 
 //Basic AjaxHandler
-function ajaxHandler(method, url, data, auth, cb){
-  $.ajax({
+function ajaxHandler(method, url, data, auth){
+  return $.ajax({
     method: method,
     url: baseURI + url,
     data: JSON.stringify(data),
-    beforeSend: function(xhr) {
+    beforeSend(xhr){
        $.mobile.loading('show');
        if(auth === "yes"){
          const { email, password } = data;
@@ -22,15 +22,33 @@ function ajaxHandler(method, url, data, auth, cb){
          xhr.setRequestHeader('Authorization', $.session.get('Authorization'));
        }
     },
-    complete: function() {
+    complete(){
       $.mobile.loading('hide');
     }
   })
-  .done(function( msg ) {
-    const message = JSON.parse(msg);
-    cb(message);
-  })
-  .fail(function(msg){
-    console.error(msg);
-  })
 }
+
+//Basic Alert Handler for Formerrors
+function alertHandler($element, type, message){
+  $element.show();
+  if(type === "success"){
+    return $element.addClass("alert-success").html(message);
+  }else if(type === "danger"){
+    return $element.addClass("alert-danger").html(message);
+  }
+}
+
+//Hook to check if user is has session
+$(document).on("pagecontainershow", () => {
+  $(".alert").hide();
+  const pageId = $('body').pagecontainer('getActivePage').prop('id');
+  if(pageId === "user" && !$.session.get('Authorization')){
+    $.mobile.pageContainer.pagecontainer("change", "#welcome");
+  }
+
+  //Handle Logout
+  $("#logout").click(e => {
+    $.session.remove('Authorization');
+    $.mobile.pageContainer.pagecontainer("change", "#welcome");
+  })
+})

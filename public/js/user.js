@@ -1,14 +1,20 @@
-$(document).on("pagecontainershow", function () {
+$(document).on("pagecontainershow", () => {
   const pageId = $('body').pagecontainer('getActivePage').prop('id');
 
   //Load User Liset
   if(pageId === "user"){
-    ajaxHandler('get', '/api/v1/users', {}, 'session' , function(msg){
-      // TODO: Handler Errors and Warning
-      if(Array.isArray(msg)){
+    const $alert = $(".table-user-list").find(".alert");
+
+    ajaxHandler('get', '/api/v1/users', {}, 'session')
+    .then(msg => {
+      const message = JSON.parse(msg);
+
+      if(message.type){
+        alertHandler($alert, "danger", message.message);
+      }else{
         const $trList = [];
 
-        msg.forEach(function(user){
+        message.forEach(user => {
           const { UserId, Active, LastName, FirstName, Email } = user;
 
           $trList.push(`
@@ -21,15 +27,18 @@ $(document).on("pagecontainershow", function () {
             </tr>
           `);
         })
-
         $(".tbody-user").html($trList);
       }
-
-      //Add Eventhandler for Userdetail
+    })
+    .then(() => {
       $(".user-link-detail").click(function(e){
+        //Bug Arrowfunction not working here
         const currentId = $(this).attr("data-id");
         window.currentId = currentId;
       })
+    })
+    .fail(msg => {
+      alertHandler($alert, "danger", "Server Error");
     })
   }
 
@@ -38,11 +47,18 @@ $(document).on("pagecontainershow", function () {
     const currentUserId = window.currentId;
 
     if(currentUserId){
-      ajaxHandler('get', `/api/v1/users/${currentUserId}`, {}, 'session' , function(msg){
-        if(Array.isArray(msg)){
+      const $alert = $(".table-user-detail").find(".alert");
+
+      ajaxHandler('get', `/api/v1/users/${currentUserId}`, {}, 'session')
+      .then(msg => {
+        const message = JSON.parse(msg);
+
+        if(message.type){
+          alertHandler($alert, "danger", message.message);
+        }else{
           const $trList = [];
 
-          msg.forEach(function(user){
+          message.forEach(user => {
             const { UserId, Active, LastName, FirstName, Email } = user;
 
             $trList.push(`
@@ -58,52 +74,66 @@ $(document).on("pagecontainershow", function () {
           $(".tbody-user-detail").html($trList);
         }
       })
+      .fail(msg => {
+        alertHandler($alert, "danger", "Server Error");
+      })
     }
   }
 
   //Read Entry for Useredit
   if(pageId === "user-edit") {
-    ajaxHandler('get', `/api/v1/users/${$.session.get('loggedInUserId')}`, {}, 'session' , function(msg){
-      const { UserId, Active, LastName, FirstName, Email } = msg[0];
+    ajaxHandler('get', `/api/v1/users/${$.session.get('loggedInUserId')}`, {}, 'session')
+    .then(msg => {
+      const message = JSON.parse(msg);
+      const { UserId, Active, LastName, FirstName, Email } = message[0];
+
       $("#active-user-edit").val(Active).change();
       $("#firstname-user-edit").val(FirstName);
       $("#lastname-user-edit").val(LastName);
       $("#email-user-edit").val(Email);
-      $("#password-user-edit").val("123"); //Fake Entry
+        //$("#password-user-edit").val("123"); //Fake Entrys
+    })
+    .fail(msg => {
+      alertHandler($alert, "danger", "Server Error");
     })
   }
 })
 
 //Edit User
 $(function(){
-  $("#user-edit-form").submit(function(e){
+  $("#user-edit-form").submit(e => {
     e.preventDefault();
 
     const $alert = $(this).find(".alert");
 
-    const active = $("#active-user-edit").val();
-    const firstName = $("#firstname-user-edit").val();
-    const lastName = $("#lastname-user-edit").val();
-    const eMail = $("#email-user-edit").val();
-    //const password = $("#password-user-edit").val();
+    const $active = $("#active-user-edit");
+    const $firstName = $("#firstname-user-edit");
+    const $lastName = $("#lastname-user-edit");
+    const $eMail = $("#email-user-edit");
+    //const $password = $("#password-user-edit");
 
     const data = {
-      Active: active,
-      FirstName: firstName,
-      LastName: lastName,
-      Email: eMail/*,
-      Password: password*/
+      Active: $active.val(),
+      FirstName: $firstName.val(),
+      LastName: $lastName.val(),
+      Email: $eMail.val()/*,
+      Password: $password.val()*/
     }
 
     ajaxHandler('put', `/api/v1/users/${
-      $.session.get('loggedInUserId')}`, data, 'session' , function(msg){
-      if(msg.type == "Warning" || msg.type == "Error"){
-        $alert.addClass("alert-danger");
-        $alert.text(msg.message);
+      $.session.get('loggedInUserId')}`, data, 'session'
+    )
+    .then(msg => {
+      const message = JSON.parse(msg);
+
+      if(message.type == "Warning" || message.type == "Error"){
+        alertHandler($alert, "danger", message.message);
       }else{
-        $alert.addClass("alert-success");
-        $alert.html("User updated");
+        alertHandler($alert, "success", "User updated");
       }
+    })
+    .fail(msg => {
+      alertHandler($alert, "danger", "Server Error");
     })
   })
 })

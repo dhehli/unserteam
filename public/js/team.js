@@ -1,14 +1,20 @@
-$(document).on("pagecontainershow", function () {
+$(document).on("pagecontainershow", () => {
   const pageId = $('body').pagecontainer('getActivePage').prop('id');
 
   //Load Team List
   if(pageId === "team"){
-    ajaxHandler('get', '/api/v1/teams', {}, 'session' , function(msg){
-      // TODO: Handler Errors and Warning
-      if(Array.isArray(msg)){
+    const $alert = $(".table-team-list").find(".alert");
+
+    ajaxHandler('get', '/api/v1/teams', {}, 'session')
+    .then(msg => {
+      const message = JSON.parse(msg);
+
+      if(message.type){
+        alertHandler($alert, "danger", message.message);
+      }else{
         const $trList = [];
 
-        msg.forEach(function(user){
+        message.forEach(user => {
           const { TeamId, OwnerId, Name, Website } = user;
 
           $trList.push(`
@@ -20,15 +26,19 @@ $(document).on("pagecontainershow", function () {
             </tr>
           `);
         })
-
         $(".tbody-team").html($trList);
       }
-
+    })
+    .then(() => {
       //Add Eventhandler for Userdetail
       $(".team-link-detail").click(function(e){
+        //Bug Arrowfunction not working here
         const currentId = $(this).attr("data-id");
         window.currentId = currentId;
       })
+    })
+    .fail(msg => {
+      alertHandler($alert, "danger", "Server Error");
     })
   }
 
@@ -37,11 +47,18 @@ $(document).on("pagecontainershow", function () {
     const currentTeamId = window.currentId;
 
     if(currentTeamId){
-      ajaxHandler('get', `/api/v1/teams/${currentTeamId}`, {}, 'session' , function(msg){
-        if(Array.isArray(msg)){
+      const $alert = $(".wrapper-listview-team-detail").find(".alert");
+
+      ajaxHandler('get', `/api/v1/teams/${currentTeamId}`, {}, 'session')
+      .then(msg => {
+        const message = JSON.parse(msg);
+
+        if(message.type){
+          alertHandler($alert, "danger", message.message);
+        }else{
           const $liList = [];
 
-          msg.forEach(function(user){
+          message.forEach(user => {
             const { TeamId, OwnerId, Name, Website } = user;
 
             $liList.push(`
@@ -51,8 +68,11 @@ $(document).on("pagecontainershow", function () {
             `);
           })
 
-          $(".listview-team-detail").html($liList).listview('refresh').trigger("create");;
+          $(".listview-team-detail").html($liList).listview('refresh').trigger("create");
         }
+      })
+      .fail(msg => {
+        alertHandler($alert, "danger", "Server Error");
       })
     }
   }
@@ -60,73 +80,95 @@ $(document).on("pagecontainershow", function () {
   //Read Entry for Teamedit
   if(pageId === "team-edit") {
     const currentTeamId = window.currentId;
-    ajaxHandler('get', `/api/v1/teams/${currentTeamId}`, {}, 'session' , function(msg){
-      const { Name, Website } = msg[0];
+
+    ajaxHandler('get', `/api/v1/teams/${currentTeamId}`, {}, 'session')
+    .then(msg => {
+      const message = JSON.parse(msg);
+      const { Name, Website } = message[0];
+
       $("#name-team-edit").val(Name);
       $("#website-team-edit").val(Website);
+    })
+    .fail(msg => {
+      alertHandler($alert, "danger", "Server Error");
     })
   }
 })
 
 $(function(){
   //Submit Team
-  $("#team-add-form").submit(function(e){
+  $("#team-add-form").submit(e => {
     e.preventDefault();
 
     const $alert = $(this).find(".alert");
 
     const ownerId = $.session.get('loggedInUserId');
-    const name = $("#name-team-add").val();
-    const website = $("#website-team-add").val();
+    const $name = $("#name-team-add");
+    const $website = $("#website-team-add");
 
     const data = {
       OwnerId: ownerId,
-      Name: name,
-      Website: website
+      Name: $name.val(),
+      Website: $website.val()
     }
 
-    ajaxHandler('post', '/api/v1/teams', data, 'session' , function(msg){
-      if(msg.type == "Warning" || msg.type == "Error"){
-        $alert.addClass("alert-danger");
-        $alert.text(msg.message);
+    ajaxHandler('post', '/api/v1/teams', data, 'session')
+    .then(msg => {
+      const message = JSON.parse(msg);
+
+      if(message.type == "Warning" || message.type == "Error"){
+        alertHandler($alert, "danger", message.message);
       }else{
-        $alert.addClass("alert-success");
-        $alert.html("Team created, go back to the <a href='#team'>List</a>");
+        alertHandler($alert, "success", "Team created");
+        $name.val("");
+        $website.val("");
       }
+    })
+    .fail(msg => {
+      alertHandler($alert, "danger", "Server Error");
     })
   })
   //Edit Team
-  $("#team-edit-form").submit(function(e){
+  $("#team-edit-form").submit(e => {
     e.preventDefault();
     const currentTeamId = window.currentId;
 
     const $alert = $(this).find(".alert");
 
-    const name = $("#name-team-edit").val();
-    const website = $("#website-team-edit").val();
+    const $name = $("#name-team-edit");
+    const $website = $("#website-team-edit");
 
     const data = {
-      Name: name,
-      Website: website
+      Name: $name.val(),
+      Website: $website.val()
     }
 
-    ajaxHandler('put', `/api/v1/teams/${currentTeamId}`, data, 'session' , function(msg){
-      if(msg.type == "Warning" || msg.type == "Error"){
-        $alert.addClass("alert-danger");
-        $alert.text(msg.message);
+    ajaxHandler('put', `/api/v1/teams/${currentTeamId}`, data, 'session')
+    .then(msg => {
+      const message = JSON.parse(msg);
+
+      if(message.type == "Warning" || message.type == "Error"){
+        alertHandler($alert, "danger", message.message);
       }else{
-        $alert.addClass("alert-success");
-        $alert.html("Team edited, go back to the <a href='#team-detail'>Detail</a>");
+        alertHandler($alert, "success", "Team edited");
       }
     })
+    .fail(msg => {
+      alertHandler($alert, "danger", "Server Error");
+    })
   })
-  //Add Eventhandler for Teamdelete
-  $("#team-link-delete").click(function(e){
-    const currentTeamId = window.currentId;
-    e.preventDefault();
 
-    ajaxHandler('delete', `/api/v1/teams/${currentTeamId}`, {}, 'session' , function(msg){
+  //Add Eventhandler for Teamdelete
+  $("#team-link-delete").click(e => {
+    e.preventDefault();
+    const currentTeamId = window.currentId;
+
+    ajaxHandler('delete', `/api/v1/teams/${currentTeamId}`, {}, 'session')
+    .then(msg => {
       $.mobile.pageContainer.pagecontainer("change", "#team");
+    })
+    .fail(msg => {
+      alertHandler($alert, "danger", "Server Error");
     })
   })
 })

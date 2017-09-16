@@ -76,19 +76,22 @@
       <a href="#user-edit" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">Options</a>
     </div>
   	<div role="main" class="ui-content">
-          <h2>User</h2>
-      <table data-role="table" class="ui-responsive table-stroke">
-        <thead>
-          <tr>
-            <th data-priority="1">FirstName</th>
-            <th data-priority="2">LastName</th>
-            <th data-priority="3">Email</th>
-            <th data-priority="4">Active</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody class="tbody-user"></tbody>
-      </table>
+      <h2>User</h2>
+      <div class="table-user-list">
+        <div class="alert"></div>
+        <table data-role="table" class="ui-responsive table-stroke">
+          <thead>
+            <tr>
+              <th data-priority="1">FirstName</th>
+              <th data-priority="2">LastName</th>
+              <th data-priority="3">Email</th>
+              <th data-priority="4">Active</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody class="tbody-user"></tbody>
+        </table>
+      </div>
   	</div>
   	<div data-role="footer">
   		<h4>Page Footer</h4>
@@ -109,17 +112,20 @@
     </div>
   	<div role="main" class="ui-content">
       <h2>User Detail</h2>
-      <table data-role="table" class="ui-responsive table-stroke">
-        <thead>
-          <tr>
-            <th data-priority="1">FirstName</th>
-            <th data-priority="2">LastName</th>
-            <th data-priority="3">Email</th>
-            <th data-priority="4">Active</th>
-          </tr>
-        </thead>
-        <tbody class="tbody-user-detail"></tbody>
-      </table>
+      <div class="table-user-detail">
+        <div class="alert"></div>
+        <table data-role="table" class="ui-responsive table-stroke">
+          <thead>
+            <tr>
+              <th data-priority="1">FirstName</th>
+              <th data-priority="2">LastName</th>
+              <th data-priority="3">Email</th>
+              <th data-priority="4">Active</th>
+            </tr>
+          </thead>
+          <tbody class="tbody-user-detail"></tbody>
+        </table>
+      </div>
   	</div>
   	<div data-role="footer">
   		<h4>Page Footer</h4>
@@ -180,17 +186,20 @@
     <div role="main" class="ui-content">
       <h2>Team</h2>
       <p><a href="#team-add" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-icon-left ui-icon-plus">Add Team</a></p>
-      <table data-role="table" class="ui-responsive table-stroke">
-        <thead>
-          <tr>
-            <th data-priority="1">TeamId</th>
-            <th data-priority="2">Name</th>
-            <th data-priority="3">Website</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody class="tbody-team"></tbody>
-      </table>
+      <div class="table-team-list">
+        <div class="alert"></div>
+        <table data-role="table" class="ui-responsive table-stroke">
+          <thead>
+            <tr>
+              <th data-priority="1">TeamId</th>
+              <th data-priority="2">Name</th>
+              <th data-priority="3">Website</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody class="tbody-team"></tbody>
+        </table>
+      </div>
   	</div>
     <div data-role="footer">
       <h4>Page Footer</h4>
@@ -272,16 +281,19 @@
     <div role="main" class="ui-content">
       <h2>Team</h2>
       <p><a href="#team-add" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-icon-left ui-icon-plus">Add Team</a></p>
-      <ul data-role="listview" class="listview-team-detail">
+      <div class="wrapper-listview-team-detail">
+        <div class="alert"></div>
+        <ul data-role="listview" class="listview-team-detail">
 
-      </ul>
+        </ul>
+      </div>
       <p>
         <a href="#team-edit" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-icon-left ui-icon-edit" id="team-link-edit">Edit Team</a>
         <a href="#" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-icon-left ui-icon-delete" id="team-link-delete">Delete Team</a>
       </p>
 
       <h2>Members</h2>
-
+      <div class="alert alert-member"></div>
       <form class="ui-filterable">
         <input id="filterBasic-list" data-type="search">
       </form>
@@ -317,19 +329,22 @@
     <div role="main" class="ui-content">
       <h2>Training</h2>
       <p><a href="#training-add" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-icon-left ui-icon-plus">Add Training</a></p>
-      <table data-role="table" class="ui-responsive table-stroke">
-        <thead>
-          <tr>
-            <th data-priority="1">TrainingId</th>
-            <th data-priority="2">Title</th>
-            <th data-priority="3">Date</th>
-            <th data-priority="4">Time</th>
-            <th data-priority="5">Team</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody class="tbody-training"></tbody>
-      </table>
+      <div class="table-training-list">
+        <div class="alert"></div>
+        <table data-role="table" class="ui-responsive table-stroke">
+          <thead>
+            <tr>
+              <th data-priority="1">TrainingId</th>
+              <th data-priority="2">Title</th>
+              <th data-priority="3">Date</th>
+              <th data-priority="4">Time</th>
+              <th data-priority="5">Team</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody class="tbody-training"></tbody>
+        </table>
+      </div>
     </div>
     <div data-role="footer">
       <h4>Page Footer</h4>
@@ -351,6 +366,7 @@
     </div>
     <div role="main" class="ui-content">
       <h2>Training</h2>
+      <div class="alert alert-training"></div>
       <p><a href="#training-add" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-icon-left ui-icon-plus">Add Training</a></p>
       <ul data-role="listview" class="listview-training-detail">
 
@@ -361,6 +377,7 @@
       </p>
 
       <h2>Participants</h2>
+      <div class="alert alert-participants"></div>
       <p>
         <a href="#" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-icon-left ui-icon-plus add-participant-link">Join Training</a>
         <a href="#" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-icon-left ui-icon-delete remove-participant-link">Cancel Training</a>

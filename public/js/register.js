@@ -1,75 +1,76 @@
-//Hook to check if user is has session
-$(document).on("pagecontainershow", function () {
-  const pageId = $('body').pagecontainer('getActivePage').prop('id');
-  if(pageId === "user" && !$.session.get('Authorization')){
-    $.mobile.pageContainer.pagecontainer("change", "#welcome");
-  }
-})
-
 $(function(){
   //Submit SignupForm
-  $("#signup-form").submit(function(e){
+  $("#signup-form").submit(e => {
     e.preventDefault();
 
     const $alert = $(this).find(".alert");
 
-    const active = $("#active-signup").val();
-    const firstName = $("#firstname-signup").val();
-    const lastName = $("#lastname-signup").val();
-    const eMail = $("#email-signup").val();
-    const password = $("#password-signup").val();
+    const $active = $("#active-signup");
+    const $firstName = $("#firstname-signup");
+    const $lastName = $("#lastname-signup");
+    const $eMail = $("#email-signup");
+    const $password = $("#password-signup");
 
     const data = {
-      Active: active,
-      FirstName: firstName,
-      LastName: lastName,
-      Email: eMail,
-      Password: password
+      Active: $active.val(),
+      FirstName: $firstName.val(),
+      LastName: $lastName.val(),
+      Email: $eMail.val(),
+      Password: $password.val()
     }
 
-    ajaxHandler('post', '/api/v1/register', data, 'no' , function(msg){
-      if(msg.type == "Warning" || msg.type == "Error"){
-        $alert.addClass("alert-danger");
-        $alert.text(msg.message);
+    ajaxHandler('post', '/api/v1/register', data, 'no')
+    .then(msg => {
+      const message = JSON.parse(msg);
+
+      if(message.type == "Warning" || message.type == "Error"){
+        alertHandler($alert, "danger", message.message);
       }else{
-        $alert.addClass("alert-success");
-        $alert.html("User created, go back to the <a href='#sign-in'>login Form</a>");
+        alertHandler($alert, "success", "User created");
+        $active.val("");
+        $firstName.val("");
+        $lastName.val("");
+        $eMail.val("");
+        $password.val("");
       }
+    })
+    .fail(msg => {
+      alertHandler($alert, "danger", "Server Error");
     })
   })
 
   //Login Form
-  $("#signin-form").submit(function(e){
+  $("#signin-form").submit(e => {
     e.preventDefault();
 
     const $alert = $(this).find(".alert");
 
-    const email = $("#email-signin").val();
-    const password = $("#password-signin").val();
+    const $email = $("#email-signin");
+    const $password = $("#password-signin");
 
     const data = {
-      email: email,
-      password: password
+      email: $email.val(),
+      password: $password.val()
     }
 
-    ajaxHandler('get', '/api/v1/users', data, 'yes', function(msg){
-      console.log(msg)
-      if(msg.type == "Warning" || msg.type == "Error"){
-        $alert.addClass("alert-danger");
-        $alert.text(msg.message);
+    ajaxHandler('get', '/api/v1/users', data, 'yes')
+    .then(msg => {
+      const message = JSON.parse(msg);
+
+      if(message.type == "Warning" || message.type == "Error"){
+        alertHandler($alert, "danger", message.message);
       }else{
         //Read UserID over Email and set Session for Logged in User and Auth
-        const userId = msg.find(x => x.Email === email).UserId
+        const userId = message.find(x => x.Email === $email.val()).UserId
         $.session.set('loggedInUserId', userId);
-        $.session.set('Authorization', basicAuth(email, password));
+        $.session.set('Authorization', basicAuth($email.val(), $password.val()));
         $.mobile.pageContainer.pagecontainer("change", "#user");
+        $email.val("");
+        $password.val("");
       }
     })
-  })
-
-  //Handle Logout
-  $("#logout").click(function(e){
-    $.session.remove('Authorization');
-    $.mobile.pageContainer.pagecontainer("change", "#welcome");
+    .fail(msg => {
+      alertHandler($alert, "danger", "Server Error");
+    })
   })
 })
