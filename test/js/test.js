@@ -2,6 +2,10 @@ QUnit.test( "Basic Auth", function( assert ) {
   assert.ok(basicAuth("dh@netlive.ch","12345678") === "Basic ZGhAbmV0bGl2ZS5jaDoxMjM0NTY3OA==", "Auth ok");
 });
 
+QUnit.test( "Ajax Handler Get User", function( assert ) {
+  $
+});
+
 QUnit.test( "Alert Handler Success", function( assert ) {
   const $alert = $("<div class='alert'>");
   const $alertElement = alertHandler($alert, "success", "success text");

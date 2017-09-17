@@ -1,0 +1,33 @@
+{
+    "project": {},
+    "files": {
+        "public\\js\\main.js": {
+            "name": "public\\js\\main.js",
+            "modules": {},
+            "classes": {
+                "MyClass": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {
+        "MyClass": {
+            "name": "MyClass",
+            "shortname": "MyClass",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "public\\js\\main.js",
+            "line": 3,
+            "description": "This is the description for my class.",
+            "is_constructor": 1
+        }
+    },
+    "elements": {},
+    "classitems": [],
+    "warnings": []
+}
