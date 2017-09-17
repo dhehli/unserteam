@@ -63,7 +63,7 @@ $(document).on("pagecontainershow", () => {
 //Load same Panel for Multiple Pages Workaround
 const panel = '<div data-role="panel" data-display="push" data-theme="b" id="navigation"><ul data-role="listview"><li data-icon="delete"><a href="#" data-rel="close">Close menu</a></li><li><a href="#user">User</a></li><li><a href="#team">Team</a></li><li><a href="#training">Trainings</a></li><li><a href="#" class="logout">Logout</a></li></ul></div>';
 
-$(document).one('pagebeforecreate', function () {
+$(document).one('pagebeforecreate', () => {
     $.mobile.pageContainer.prepend(panel);
     $("#navigation").panel().enhanceWithin();
 });
