@@ -3,7 +3,16 @@ QUnit.test( "Basic Auth", function( assert ) {
 });
 
 QUnit.test( "Ajax Handler Get User", function( assert ) {
-  $
+  const done = assert.async();
+  const authSession = $.session.set('Authorization', 'Basic ZGhAbmV0bGl2ZS5jaDoxMjM0NTY3OA==');
+
+  const ajax = ajaxHandler("get", "/api/v1/users", {}, 'session');
+  ajax.then(msg =>{
+    const message = JSON.parse(msg);
+    assert.ok(Array.isArray(message), "Returned Data is Array");
+    done();
+  })
+  $.session.remove('Authorization');
 });
 
 QUnit.test( "Alert Handler Success", function( assert ) {

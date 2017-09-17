@@ -1,7 +1,6 @@
 Installation:
 1. Make sure you have installed `node-v` v8.4.0 Current
 2. You need to execute `npm install` to download all required libraries.
-3. Make sure have installed uglify.js global
 
 Run application:
 1.  Now you have to bundle the js files with `npm run uglify`
